@@ -1,25 +1,30 @@
 import java.io.*;
 import java.util.*;
+
 /**
  * @author Hsienting Chu
  *
  */
 public class Heapfile {
 
-	public void importData() {
+	public int count = 0;
+
+	
+	
+	public void inputData() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("fileName"));
 			String line = br.readLine();
+			if(count == 0){
+				count++;
+				continue;
+			}
+			
 			while (line != null) {
 				String[] s = line.split("\t");
-
+//				s[0] = record.add();
 			}
-			DataOutputStream fos = new DataOutputStream(new FileOutputStream("binout.txt"));
-			fos.writeInt(1234);
-			fos.writeUTF("abcd");
-			fos.writeByte(1234);
 
-			fos.close();
 			DataInputStream dos = new DataInputStream(new FileInputStream("binout.txt"));
 			System.out.println(dos.readInt());
 			System.out.println(dos.readUTF());
@@ -32,4 +37,13 @@ public class Heapfile {
 
 	}
 
+	public void outputData() throws Exception {
+		DataOutputStream fos = new DataOutputStream(new FileOutputStream("binout.txt"));
+		fos.writeInt(1234);
+		fos.writeUTF("abcd");
+		fos.writeByte(1234);
+
+		fos.close();
+
+	}
 }

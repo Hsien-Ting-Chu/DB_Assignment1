@@ -1,19 +1,27 @@
 import java.io.*;
+
 /**
  * @author Hsienting Chu
  *
  */
+
 public class dbload {
+
+	public static String fileName;
+	public static String parameter;
+	public static int pageSize;
+
 	public static void main(String[] args) {
 		try {
-			String parameter = args[0];
-			int pageSize = Integer.parseInt(args[1]);
-			String heapFile = args[2];
+			parameter = args[0];
+			pageSize = Integer.parseInt(args[1]);
+			fileName = args[2];
 
 		} catch (Exception e) {
 			System.err.println("Parameter is wrong");
 		}
-		Heapfile heapfile = new Heapfile();
+		
+		dbload dbload = new dbload();
 		
 	}
 }
