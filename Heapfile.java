@@ -1,49 +1,79 @@
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import model.Page;
+import model.Record;
 
 /**
  * @author Hsienting Chu
  *
  */
 public class Heapfile {
+	private static String HEAPFILE = "C://heapfile.dat";
+	private int pageSize = 1024;
+	private Page currentPage;
+	private File heapFile;
+	FileInputStream reader;
+	FileOutputStream writter;
 
-	public int count = 0;
-
-	
-	
-	public void inputData() {
+	// initiate file control tool
+	public Heapfile() {
+		heapFile = new File(HEAPFILE);
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("fileName"));
-			String line = br.readLine();
-			if(count == 0){
-				count++;
-				continue;
+			if (!heapFile.exists()) {
+				heapFile.createNewFile();
 			}
-			
-			while (line != null) {
-				String[] s = line.split("\t");
-//				s[0] = record.add();
-			}
-
-			DataInputStream dos = new DataInputStream(new FileInputStream("binout.txt"));
-			System.out.println(dos.readInt());
-			System.out.println(dos.readUTF());
-			System.out.println(dos.readInt());
-			dos.close();
-
-		} catch (Exception e) {
-			System.err.println("Could not read the file");
+			reader = new FileInputStream(heapFile);
+			writter = new FileOutputStream(heapFile);
+		} catch (FileNotFoundException e) {
+			System.err.println("File not found:" + HEAPFILE);
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("Can not create heapFile:" + HEAPFILE);
+			e.printStackTrace();
 		}
+	}
+
+	public Heapfile(int pageSize) {
+		this();
+		this.pageSize = pageSize;
+	}
+
+	public void importData(Record record) {
+		if (currentPage == null) {
+			currentPage = new Page(pageSize);
+		} else {
+			if (currentPage.getSpace() < record.getSize()) {
+				save();
+				currentPage = new Page(pageSize);
+			} else {
+				currentPage.addRecord(record);
+			}
+		}
+	}
+	
+	public void finishedImport() {
+		save();
+	}
+	
+
+	private void save() {
+		byte[] writeBytes = new byte[pageSize];
+		byte[] src = currentPage.getByteArray();
+		System.arraycopy(src, 0, writeBytes, 0, src.length );
+		try {
+			writter.write(writeBytes);
+		} catch (IOException e) {
+			System.err.println("can not write heapFile");
+			e.printStackTrace();
+		}
+	}
+
+	public void searchData(String keyword) {
 
 	}
 
-	public void outputData() throws Exception {
-		DataOutputStream fos = new DataOutputStream(new FileOutputStream("binout.txt"));
-		fos.writeInt(1234);
-		fos.writeUTF("abcd");
-		fos.writeByte(1234);
-
-		fos.close();
-
-	}
 }

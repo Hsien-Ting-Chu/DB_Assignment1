@@ -1,5 +1,3 @@
-import java.io.*;
-
 /**
  * @author Hsienting Chu
  *
