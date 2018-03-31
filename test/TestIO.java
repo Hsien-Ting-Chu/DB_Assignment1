@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class TestIO {
 
-	private static String FILE_PATH = "C://binout";
+	private static String FILE_PATH = "/Users/yin/Documents/workspace/DB_Assignment1/binout";
 	private static File file = new File(FILE_PATH);
 
 	public static void main(String[] args) throws Exception {
@@ -42,7 +42,7 @@ public class TestIO {
 		FileOutputStream writer = new FileOutputStream(file);
 		writer.write(intToByteArray(644477457));
 		System.out.println(file.length());
-		byte[] strBytes = "abc<1234´ú¸Õ".getBytes(StandardCharsets.UTF_8);
+		byte[] strBytes = "abc<1234Ä~Äò".getBytes(StandardCharsets.UTF_8);
 		writer.write(strBytes);
 		System.out.println(strBytes.length);
 		System.out.println(file.length());
