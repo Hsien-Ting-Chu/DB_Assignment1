@@ -22,6 +22,7 @@ public class HeapFile {
 	private Page currentPage;
 	private File heapFile;
 	private int count = 0;
+	private int pageCount = 0;
 	FileInputStream heapReader;
 	FileOutputStream heapWritter;
 
@@ -69,7 +70,8 @@ public class HeapFile {
 			for (int i = 0; i < failList.size(); i++) {
 				System.out.println(failList.get(i));
 			}
-			System.out.println("Total count:" + count);
+			System.out.println("Total pages:" + pageCount );
+			System.out.println("Total counts:" + count);
 		} catch (FileNotFoundException e) {
 			System.err.println("File Not Found, FilePath:" + filePath);
 			e.printStackTrace();
@@ -82,10 +84,12 @@ public class HeapFile {
 	public void addRecord(Record record) {
 		if (currentPage == null) {
 			currentPage = new Page(pageSize);
+			pageCount++;
 		} else {
 			if (currentPage.getSpace() <= record.getSize()) {
 				save();
 				currentPage = new Page(pageSize);
+				pageCount++;
 			}
 		}
 		currentPage.addRecord(record);
