@@ -15,8 +15,10 @@ import model.Record;
  *
  */
 public class HeapFile {
-	private static String HEAPFILE = "/Users/yin/Documents/workspace/DB_Assignment1/heapFile";
-	private int pageSize = 1024;
+	// private static String HEAPFILE =
+	// "/Users/yin/Documents/workspace/DB_Assignment1/heapFile";
+	private int pageSize;
+	private static String HEAPFILE = "./heap";
 	private Page currentPage;
 	private File heapFile;
 	private int count = 0;
@@ -24,7 +26,9 @@ public class HeapFile {
 	FileOutputStream heapWritter;
 
 	// initiate file control tool
-	public HeapFile() {
+	public HeapFile(int pageSize) {
+		this.pageSize = pageSize;
+		HEAPFILE = HEAPFILE + "." + pageSize;
 		heapFile = new File(HEAPFILE);
 		try {
 			if (!heapFile.exists()) {
@@ -39,24 +43,19 @@ public class HeapFile {
 		}
 	}
 
-	public HeapFile(int pageSize) {
-		this();
-		this.pageSize = pageSize;
-	}
-
 	public void importData(String filePath) {
 		try {
 			heapWritter = new FileOutputStream(heapFile);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
 			String recordStr = reader.readLine();
-			//call twice, that would remove the first line for column name
+			// call twice, that would remove the first line for column name
 			recordStr = reader.readLine();
 			ArrayList<String> failList = new ArrayList<String>();
 			while (recordStr != null && recordStr.length() > 0) {
-				String[] strArr = recordStr.split("\t");
-				if (strArr.length != 9){
+				String[] strArr = recordStr.split("\t",-1);
+				if (strArr.length != 9) {
 					failList.add(recordStr);
-				}else{
+				} else {
 					Record record = new Record(strArr);
 					addRecord(record);
 					count++;
@@ -64,11 +63,11 @@ public class HeapFile {
 				recordStr = reader.readLine();
 			}
 			reader.close();
-			//SAVE FOR LAST PAGE
+			// SAVE FOR LAST PAGE
 			save();
-			System.err.println("fail list:");
+			System.out.println("fail list:");
 			for (int i = 0; i < failList.size(); i++) {
-				System.err.println(failList.get(i));
+				System.out.println(failList.get(i));
 			}
 			System.out.println("Total count:" + count);
 		} catch (FileNotFoundException e) {

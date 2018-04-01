@@ -85,7 +85,8 @@ public class Record extends ByteProcessor {
 		BN_RENEW_DT = strArr[5];
 		BN_STATE_NUM = strArr[6];
 		BN_STATE_OF_REG = strArr[7];
-		BN_ABN = Long.parseLong(strArr[8]);
+		BN_ABN =  strArr[8].length() == 0 ? -1 : Long.parseLong(strArr[8]);
+		//to deal with ABN without value
 	}
 
 	public Record(byte[] bytesSrc) {

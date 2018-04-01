@@ -42,7 +42,7 @@ public class TestIO {
 		FileOutputStream writer = new FileOutputStream(file);
 		writer.write(intToByteArray(644477457));
 		System.out.println(file.length());
-		byte[] strBytes = "abc<1234Ä~Äò".getBytes(StandardCharsets.UTF_8);
+		byte[] strBytes = "abc<1234".getBytes(StandardCharsets.UTF_8);
 		writer.write(strBytes);
 		System.out.println(strBytes.length);
 		System.out.println(file.length());
