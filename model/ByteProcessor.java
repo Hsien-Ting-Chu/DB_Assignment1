@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * 
+ * @author Hsienting Chu
+ */
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 

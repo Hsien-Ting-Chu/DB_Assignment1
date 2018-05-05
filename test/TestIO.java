@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Hashtable;
 
 /**
  * @author Hsienting Chu
@@ -15,13 +16,31 @@ import java.nio.charset.StandardCharsets;
  */
 public class TestIO {
 
-	private static String FILE_PATH = "/Users/yin/Documents/workspace/DB_Assignment1/binout";
+	private static String FILE_PATH = "D:\\My Documents\\RMIT\\2018 Semester 1\\Datebase System\\Assignment1\\BUSINESS_NAMES_201803.csv";
 	private static File file = new File(FILE_PATH);
 
 	public static void main(String[] args) throws Exception {
-		TestIO t = new TestIO();
-		t.outputData();
-		t.inputData();
+
+		
+		
+		
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(FILE_PATH)));
+//		String recordStr = reader.readLine();
+//		// call twice, that would remove the first line for column name
+//		recordStr = reader.readLine();
+//		ArrayList<String> failList = new ArrayList<String>();
+//		while (recordStr != null && recordStr.length() > 0) {
+//			String[] strArr = recordStr.split("\t",-1);
+//			int hashcode =Math.abs(strArr[1].hashCode());
+//			System.out.println(hashcode);
+//			recordStr = reader.readLine();
+//		}
+//		reader.close();
+		
+		
+//		TestIO t = new TestIO();
+//		t.outputData();
+//		t.inputData();
 	}
 
 	public void inputData() throws IOException {

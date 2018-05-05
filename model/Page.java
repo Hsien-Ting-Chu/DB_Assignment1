@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * 
+ * @author Hsienting Chu
+ */
 import java.util.ArrayList;
 
 public class Page extends ByteProcessor {

@@ -15,8 +15,6 @@ import model.Record;
  *
  */
 public class HeapFile {
-	// private static String HEAPFILE =
-	// "/Users/yin/Documents/workspace/DB_Assignment1/heapFile";
 	private int pageSize;
 	private static String HEAPFILE = "./heap";
 	private Page currentPage;
@@ -109,7 +107,7 @@ public class HeapFile {
 
 	public void searchData(String keyword) {
 		if (!heapFile.exists()) {
-			System.out.println("No database");
+			System.out.println("No Heapfile");
 		} else {
 			try {
 				heapReader = new FileInputStream(heapFile);
