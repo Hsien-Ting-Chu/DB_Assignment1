@@ -6,42 +6,61 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.Hashtable;
+
+import model.Page;
+import model.Record;
 
 /**
  * @author Hsienting Chu
  *
  */
 public class TestIO {
-
-	private static String FILE_PATH = "D:\\My Documents\\RMIT\\2018 Semester 1\\Datebase System\\Assignment1\\BUSINESS_NAMES_201803.csv";
+	private static FileInputStream heapReader;
+	private static String FILE_PATH = "D:\\My Documents\\RMIT\\2018 Semester 1\\Datebase System\\Assignment1\\heap.4096";
 	private static File file = new File(FILE_PATH);
-
-	public static void main(String[] args) throws Exception {
-
+	private static String HEAPFILE = "./heap.";
+	private static int pageSize = 4096 ;
+	private static File heapFile;
+	private static Page currentPage;
+	private static Record currentRecord;
+	private static int count = 0;
+	public static void main(String[] args){
 		
 		
+/*		
+		HEAPFILE = HEAPFILE + pageSize;
+		heapFile = new File(HEAPFILE);
+		if (!heapFile.exists()) {
+			System.out.println("No Heapfile");
+		} else {
+			try {
+				heapReader = new FileInputStream(heapFile);
+				ArrayList<Record> results = new ArrayList<Record>();
+				byte[] pageBytes = new byte[pageSize];
+				int readlen = heapReader.read(pageBytes, 0, 4096);
+					currentRecord = new Record(pageBytes);
+					System.out.println(currentRecord);
 		
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(FILE_PATH)));
-//		String recordStr = reader.readLine();
-//		// call twice, that would remove the first line for column name
-//		recordStr = reader.readLine();
-//		ArrayList<String> failList = new ArrayList<String>();
-//		while (recordStr != null && recordStr.length() > 0) {
-//			String[] strArr = recordStr.split("\t",-1);
-//			int hashcode =Math.abs(strArr[1].hashCode());
-//			System.out.println(hashcode);
-//			recordStr = reader.readLine();
-//		}
-//		reader.close();
+				System.out.println("result data:" + results.size());
+				System.out.println("total data:" + count);
+			} catch (IOException e) {
+				System.err.println("Load Page Byte Error");
+				e.printStackTrace();
+			} catch (Exception e) {
+				System.err.println("Load Page Byte Error");
+				e.printStackTrace();
+			}
+		}
+		*/
+	}
 		
-		
+	
 //		TestIO t = new TestIO();
 //		t.outputData();
 //		t.inputData();
-	}
 
 	public void inputData() throws IOException {
 		int readReturn = -1;

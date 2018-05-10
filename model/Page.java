@@ -59,6 +59,18 @@ public class Page extends ByteProcessor {
 		return sum + recordList.size() * INT_BYTE_LENGTH;
 	}
 
+	public ArrayList<Record> getRecordList() {
+		return recordList;
+	}
+	
+	public Record getRecordByIndex(int index) {
+		  return recordList.get(index);
+		 }
+
+	public void setRecordList(ArrayList<Record> recordList) {
+		this.recordList = recordList;
+	}
+
 	// need keep a space for data len
 	public int getSpace() {
 		return pageSize - (getSize() + INT_BYTE_LENGTH);

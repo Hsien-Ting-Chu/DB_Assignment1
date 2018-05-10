@@ -16,7 +16,8 @@ public class hashload {
 	public static void main(String[] args) {
 		// To validate the parameter
 		try {
-			int pageSize = Integer.parseInt(args[0]);
+			//int pageSize = Integer.parseInt(args[0]);
+			int pageSize = 4096;
 			HashFile hashFile = new HashFile();
 			hashFile.importData(pageSize);
 
