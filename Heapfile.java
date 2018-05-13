@@ -16,7 +16,7 @@ import model.Record;
  */
 public class HeapFile {
 	private int pageSize;
-	private static String HEAPFILE = "./heap";
+	private static String HEAPFILE = "./heap.";
 	private Page currentPage;
 	private File heapFile;
 	private int count = 0;
@@ -27,7 +27,7 @@ public class HeapFile {
 	// initiate file control tool
 	public HeapFile(int pageSize) {
 		this.pageSize = pageSize;
-		HEAPFILE = HEAPFILE + "." + pageSize;
+		HEAPFILE = HEAPFILE + pageSize;
 		heapFile = new File(HEAPFILE);
 		try {
 			if (!heapFile.exists()) {
