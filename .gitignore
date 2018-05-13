@@ -45,3 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/HashFile.class
+/HashTable.class
+/HeapFile.class
+/dbload.class
+/dbquery.class
+/hashload.class
+/hashquery.class
+/Heapfile.class
