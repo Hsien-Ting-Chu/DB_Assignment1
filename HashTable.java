@@ -1,4 +1,6 @@
+import java.io.BufferedWriter;
 import java.util.ArrayList;
+
 import model.HashIndex;
 
 /**
@@ -6,35 +8,25 @@ import model.HashIndex;
  *
  */
 public class HashTable {
-	private int size = 0;
+	private int bucketSize = 0;
 	private int currentSize = 0;
-	private int hashCode;
-	private int pageNum;
-	private int recordNum;
-	ArrayList<HashIndex> hashArray;
-	HashIndex hashIndex;
+	BufferedWriter hashWriter;
+	ArrayList<HashIndex> hasharray;
 
-	public HashTable(int size) {
-		this.size = size;
-		hashArray = new ArrayList<HashIndex>();
+	public HashTable() {
+		hasharray = new ArrayList<HashIndex>();
+	}
+
+	public void add(HashIndex hashIndex, int index) {
+		hasharray.add(hashIndex);
 
 	}
 
-	public void add(int hashCode, int pageNum, int recordNum) {
-		this.hashCode = hashCode;
-		this.pageNum = pageNum;
-		this.recordNum = recordNum;
-		if (currentSize < size) {
-			hashIndex.getHashCode();
-
-		}
+	public int getcurrentSize() {
+		return currentSize;
 	}
 
-	public int getSize() {
-		return size;
-	}
-
-	public ArrayList<HashIndex> getHashIndex() {
-		return hashArray;
+	public ArrayList<HashIndex> getHasharray() {
+		return hasharray;
 	}
 }
