@@ -9,10 +9,11 @@ public class HashIndex {
 	private int hashCode;
 	private int pageNum;
 	private int index;
-	public HashIndex(int hashCode, int pageNum, int index){
+
+	public HashIndex(int hashCode, int pageNum, int index) {
 		this.hashCode = hashCode;
 		this.pageNum = pageNum;
-		this.index = index; 
+		this.index = index;
 	}
 
 	public int getHashCode() {
@@ -27,4 +28,8 @@ public class HashIndex {
 		return index;
 	}
 
+	public String toString() {
+		return hashCode + "," + pageNum + "," + index;
+
+	}
 }
